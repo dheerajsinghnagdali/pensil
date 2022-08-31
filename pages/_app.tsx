@@ -33,7 +33,10 @@ const Header: React.FC = () => {
         </a>
       </NextLink>
 
-      <button onClick={toggle} className="rounded hover:bg-gray-100 lg:hidden">
+      <button
+        onClick={toggle}
+        className="rounded hover:bg-gray-100 focus-visible:outline-none lg:hidden"
+      >
         <CgMenuLeftAlt size="1.5rem" />
       </button>
 
