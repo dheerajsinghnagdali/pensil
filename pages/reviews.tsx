@@ -46,7 +46,7 @@ const ReviewsPage: React.FC = () => {
         >
           Our happy clients say about us
         </h3>
-        <div className="relative mt-8 grid gap-6 md:grid-cols-2 lg:mt-10 lg:grid-cols-3 lg:gap-8">
+        <div className="container relative mt-8 grid gap-6 sm:grid-cols-2 lg:mt-10 lg:grid-cols-3 lg:gap-8">
           <Testimonial
             avatar={{
               src: "https://source.unsplash.com/random",

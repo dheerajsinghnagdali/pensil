@@ -1,27 +1,14 @@
 import type { NextPage } from "next";
 import NextLink from "next/link";
 import * as React from "react";
-import { BsGithub, BsInstagram, BsLinkedin, BsTwitter } from "react-icons/bs";
+import {
+  BsGithub,
+  BsInstagram,
+  BsLinkedin,
+  BsPatchCheckFill,
+  BsTwitter,
+} from "react-icons/bs";
 import { AiFillStar } from "react-icons/ai";
-
-const Star: React.FC<{ filled?: boolean }> = ({ filled = true }) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth="1.5"
-      stroke="currentColor"
-      className={`h-5 w-5 ${filled ? "fill-black" : ""}`}
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
-      />
-    </svg>
-  );
-};
 
 export const Faq: React.FC<{ question: string; answer: string }> = ({
   question,
@@ -48,11 +35,11 @@ export const Testimonial: React.FC<TestimonialProps> = (props) => {
   return (
     <article className="space-y-6 rounded bg-white p-6 shadow-md">
       <div className="flex gap-x-0.5">
-        <Star />
-        <Star />
-        <Star />
-        <Star />
-        <Star />
+        <AiFillStar className="text-black" size="1.25rem" />
+        <AiFillStar className="text-black" size="1.25rem" />
+        <AiFillStar className="text-black" size="1.25rem" />
+        <AiFillStar className="text-black" size="1.25rem" />
+        <AiFillStar className="text-black" size="1.25rem" />
       </div>
       <p>“{thought}”</p>
       <div className="flex items-center gap-x-2">
@@ -119,7 +106,7 @@ export const Card: React.FC<CardProps> = (props) => {
             </div>
           </div>
           <div className="flex gap-x-2">
-            <NextLink href={{ pathname: "/community", query: { id } }}>
+            <NextLink href={{ pathname: "/community/[id]", query: { id } }}>
               <a className="rounded-lg bg-sky-200 px-4 py-2 text-sm font-medium text-sky-500 hover:bg-opacity-80 focus-visible:outline-none">
                 View
               </a>
@@ -131,6 +118,52 @@ export const Card: React.FC<CardProps> = (props) => {
         </div>
       </div>
     </div>
+  );
+};
+
+const ActiveCard: React.FC<{
+  poster: { src: string; alt: string };
+  name: string;
+  desc: string;
+  online: string;
+  memebers: string;
+  id: number;
+}> = (props) => {
+  const { poster, desc, name, memebers, online, id } = props;
+
+  return (
+    <NextLink href={{ pathname: "/community/[id]", query: { id } }}>
+      <a className="block focus-visible:outline-none">
+        <div className="overflow-hidden rounded-xl shadow-md">
+          <img
+            className="aspect-video object-cover"
+            src={poster.src}
+            alt={poster.alt}
+          />
+
+          <div className="p-3">
+            <div className="flex items-center gap-x-2">
+              <BsPatchCheckFill className="text-blue-500" />
+              <h3 className="text-lg font-medium">{name}</h3>
+            </div>
+
+            <p className="mt-1.5 text-sm">{desc}</p>
+
+            <div className="mt-8 flex items-center justify-between">
+              <div className="flex items-center gap-x-2">
+                <span className="inline-flex h-2.5 w-2.5 rounded-full bg-green-500"></span>
+                <span className="text-sm font-medium">{online} online</span>
+              </div>
+
+              <div className="flex items-center gap-x-2">
+                <span className="inline-flex h-2.5 w-2.5 rounded-full bg-gray-500"></span>
+                <span className="text-sm font-medium">{memebers} members</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </NextLink>
   );
 };
 
@@ -197,7 +230,7 @@ const Home: NextPage = () => {
           Explore communities
         </h3>
 
-        <div className="mt-8 grid gap-6 md:grid-cols-2 lg:mt-10 lg:grid-cols-3 lg:gap-8">
+        <div className="container mt-8 grid gap-6 sm:grid-cols-2 lg:mt-10 lg:grid-cols-3 lg:gap-8">
           <Card
             avatars={[
               {
@@ -270,8 +303,8 @@ const Home: NextPage = () => {
         </div>
 
         <div className="mt-6 flex justify-center">
-          <button className="rounded-lg bg-sky-200 px-4 py-2 font-medium text-sky-500 hover:opacity-80 focus-visible:outline-none sm:text-lg">
-            Load more
+          <button className="rounded-lg bg-sky-500 px-4 py-2 font-medium text-white hover:opacity-80 focus-visible:outline-none">
+            Show more...
           </button>
         </div>
       </section>
@@ -328,8 +361,63 @@ const Home: NextPage = () => {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* Active communities */}
       <section className="mt-12 lg:mt-20">
+        <div className="flex justify-center">
+          <h3 className="relative inline-block text-center text-3xl font-bold lg:text-4xl">
+            Popular active communities
+            <span className="absolute -top-1.5 -right-1.5 flex h-3 w-3">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+              <span className="relative inline-flex h-3 w-3 rounded-full bg-red-500"></span>
+            </span>
+          </h3>
+        </div>
+
+        <div className="container mt-8 grid gap-6 sm:grid-cols-2 lg:mt-10 lg:grid-cols-3 lg:gap-8">
+          <ActiveCard
+            id={1}
+            poster={{
+              src: "https://source.unsplash.com/random/700×700",
+              alt: "random image from unsplash",
+            }}
+            desc="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati fugit voluptatum magnam saepe ullam eius."
+            name="Python community"
+            memebers="93,354"
+            online="41,232"
+          />
+          <ActiveCard
+            id={2}
+            poster={{
+              src: "https://source.unsplash.com/random/800×800",
+              alt: "random image from unsplash",
+            }}
+            desc="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati fugit voluptatum magnam saepe ullam eius."
+            name="Rust community"
+            memebers="43,354"
+            online="11,232"
+          />
+          <ActiveCard
+            id={3}
+            poster={{
+              src: "https://source.unsplash.com/random/900×900",
+              alt: "random image from unsplash",
+            }}
+            desc="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati fugit voluptatum magnam saepe ullam eius."
+            name="Golang community"
+            memebers="43,354"
+            online="11,232"
+          />
+        </div>
+
+        <div className="mt-6 flex justify-center">
+          <button className="rounded-lg bg-sky-500 px-4 py-2 font-medium text-white hover:opacity-80 focus-visible:outline-none">
+            Show more...
+          </button>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="mt-12 lg:mt-24">
         <div className="grid gap-y-12 lg:grid-cols-2 lg:gap-x-8">
           <div className="space-y-6">
             <span className="font-medium uppercase text-gray-500">faq</span>
