@@ -312,10 +312,10 @@ const Home: NextPage = () => {
       {/* Testimonial */}
       <section className="mt-12 lg:mt-20">
         <p className="text-center text-gray-600">
-          2,157 people have said how good Rareblocks
+          2,157 people have said how good pensil
         </p>
         <h3 className="mt-1.5 text-center text-3xl font-bold lg:text-4xl">
-          Our happy clients say about us
+          Our happy users say about us
         </h3>
 
         <div className="relative mt-8 p-2 lg:mt-10">
@@ -388,7 +388,7 @@ const Home: NextPage = () => {
           <ActiveCard
             id={2}
             poster={{
-              src: "https://source.unsplash.com/random/800×800",
+              src: "https://source.unsplash.com/random/700×700",
               alt: "random image from unsplash",
             }}
             desc="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati fugit voluptatum magnam saepe ullam eius."
@@ -399,7 +399,7 @@ const Home: NextPage = () => {
           <ActiveCard
             id={3}
             poster={{
-              src: "https://source.unsplash.com/random/900×900",
+              src: "https://source.unsplash.com/random/700×700",
               alt: "random image from unsplash",
             }}
             desc="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati fugit voluptatum magnam saepe ullam eius."
