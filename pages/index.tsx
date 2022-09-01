@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import NextLink from "next/link";
 import * as React from "react";
 import { BsGithub, BsInstagram, BsLinkedin, BsTwitter } from "react-icons/bs";
+import { AiFillStar } from "react-icons/ai";
 
 const Star: React.FC<{ filled?: boolean }> = ({ filled = true }) => {
   return (
@@ -150,7 +151,7 @@ const Home: NextPage = () => {
           </p>
 
           <div className="mt-8 flex flex-col-reverse gap-4 self-stretch sm:flex-row sm:justify-center lg:justify-start">
-            <NextLink href="/sing-in">
+            <NextLink href="/sign-in">
               <a className="rounded-xl bg-sky-200 px-4 py-3 text-center font-medium text-sky-500 hover:bg-opacity-80 sm:text-lg">
                 Sing in
               </a>
@@ -160,6 +161,23 @@ const Home: NextPage = () => {
                 Try for free
               </a>
             </NextLink>
+          </div>
+          <div className="mt-6 space-y-2.5 lg:mt-8">
+            <p className="text-center lg:text-left">Trusted by 50k+ users</p>
+
+            <div className="flex items-center gap-x-2">
+              <div className="flex gap-x-1">
+                <AiFillStar className="text-black" />
+                <AiFillStar className="text-black" />
+                <AiFillStar className="text-black" />
+                <AiFillStar className="text-black" />
+                <AiFillStar className="text-black" />
+              </div>
+              <span className="text-sm font-medium">4.1/5</span>
+              <span className="text-sm font-medium text-gray-500">
+                (14K Reviews)
+              </span>
+            </div>
           </div>
         </div>
 
